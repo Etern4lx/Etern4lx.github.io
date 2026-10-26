@@ -1,0 +1,110 @@
+---
+// Cursor personalizado: mira de francotirador (cruz con hueco central + punto)
+// Solo en dispositivos con ratón.
+---
+
+<div id="crosshair" aria-hidden="true">
+  <span class="arm a-top"></span>
+  <span class="arm a-bottom"></span>
+  <span class="arm a-left"></span>
+  <span class="arm a-right"></span>
+  <span class="center"></span>
+</div>
+
+<style is:global>
+  #crosshair {
+    display: none;
+  }
+
+  @media (pointer: fine) {
+    html, body, a, button, input, summary, label, select, textarea {
+      cursor: none !important;
+    }
+
+    #crosshair {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      will-change: transform;
+      --gap: 6px;      /* hueco central */
+      --len: 12px;     /* largo de cada brazo */
+    }
+    #crosshair.visible { opacity: 1; }
+
+    /* Contenedor interno para poder rotar sin afectar a la posición */
+    #crosshair .arm, #crosshair .center {
+      position: absolute;
+      background: #c084fc;
+      box-shadow: 0 0 6px rgba(192, 132, 252, 0.8);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    #crosshair .a-top    { width: 1.5px; height: var(--len); left: -0.75px; top: calc(-1 * (var(--gap) + var(--len))); }
+    #crosshair .a-bottom { width: 1.5px; height: var(--len); left: -0.75px; top: var(--gap); }
+    #crosshair .a-left   { height: 1.5px; width: var(--len); top: -0.75px; left: calc(-1 * (var(--gap) + var(--len))); }
+    #crosshair .a-right  { height: 1.5px; width: var(--len); top: -0.75px; left: var(--gap); }
+
+    #crosshair .center {
+      width: 3px;
+      height: 3px;
+      left: -1.5px;
+      top: -1.5px;
+      border-radius: 50%;
+      background: #e9d5ff;
+    }
+
+    /* Sobre enlaces y botones: la cruz gira 45° (se convierte en X) y se abre */
+    #crosshair.hover {
+      --gap: 9px;
+      transition: none;
+    }
+    #crosshair.hover .arm {
+      background: #f0abfc;
+    }
+
+    /* Al hacer clic: se cierra hacia el centro */
+    #crosshair.down {
+      --gap: 3px;
+    }
+  }
+</style>
+
+<script>
+  const cross = document.getElementById('crosshair');
+
+  if (cross && window.matchMedia('(pointer: fine)').matches) {
+    let hover = false;
+
+    const show = () => cross.classList.add('visible');
+    const hide = () => cross.classList.remove('visible');
+
+    function place(x: number, y: number) {
+      cross!.style.transform = `translate(${x}px, ${y}px) rotate(${hover ? 45 : 0}deg)`;
+    }
+
+    let lx = 0, ly = 0;
+    window.addEventListener('mousemove', (e) => {
+      lx = e.clientX;
+      ly = e.clientY;
+      show();
+      const target = e.target as HTMLElement | null;
+      const interactive = !!target?.closest('a, button, input, summary, label, select, textarea, [role="button"]');
+      if (interactive !== hover) {
+        hover = interactive;
+        cross.classList.toggle('hover', hover);
+      }
+      place(lx, ly);
+    });
+
+    window.addEventListener('mousedown', () => cross.classList.add('down'));
+    window.addEventListener('mouseup', () => cross.classList.remove('down'));
+    document.addEventListener('mouseleave', hide);
+    document.addEventListener('mouseenter', show);
+  }
+</script>

@@ -1,0 +1,53 @@
+{
+  "name": "Etern4l",
+  "handle": "Etern4l",
+  "role": "Cybersecurity Specialist & Offensive Security Enthusiast",
+  "statusText": "Seeking Red Team Opportunities / Building Community",
+  "bio": "Especialista en ciberseguridad con pasión por el hacking ético, pentesting de infraestructura y entornos de Active Directory. Documento mi aprendizaje continuo en writeups prácticos y actualmente construyendo una comunidad técnica para apasionados del sector.",
+  "location": "España / Remoto",
+  "email": "contacto@tudominio.com",
+  "stats": {
+    "certifications": 3,
+    "inProgress": 3,
+    "writeups": 15,
+    "htbRank": "Pro Hacker"
+  },
+  "socials": {
+    "github": "https://github.com/etern4lx",
+    "linkedin": "https://linkedin.com/in/tu-perfil",
+    "hackthebox": "https://app.hackthebox.com/profile/tu-id",
+    "tryhackme": "https://tryhackme.com/p/tu-usuario",
+    "discord": "https://chat.stickybit.es",
+    "telegram": "https://t.me/tu-canal"
+  },
+  "skills": {
+    "offensive": [
+      "Active Directory Exploitation",
+      "Web Pentesting (OWASP Top 10)",
+      "Network Penetration Testing",
+      "Privilege Escalation (Linux/Windows)",
+      "Pivoting & Port Forwarding"
+    ],
+    "tools": [
+      "Burp Suite Pro",
+      "BloodHound",
+      "Metasploit",
+      "Nmap",
+      "Impacket",
+      "Wireshark",
+      "Hashcat / John The Ripper",
+      "Chisel / Ligolo-ng"
+    ],
+    "defensive_and_basics": [
+      "Linux / Bash Scripting",
+      "Python para Ciberseguridad",
+      "PowerShell",
+      "Gestión de Vulnerabilidades (Nessus/OpenVAS)",
+      "Fundamentos de SIEM / Logs"
+    ]
+  },
+  "pgp": {
+    "fingerprint": "8F3B 9012 45AC B321 ED40 9901 28AA 74EF 10DC 45FE",
+    "keyUrl": "/pgp-public.asc"
+  }
+}

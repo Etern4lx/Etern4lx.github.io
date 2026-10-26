@@ -1,0 +1,113 @@
+---
+import certifications from '../data/certifications.json';
+
+const completed = certifications.filter((c: any) => c.status === 'completed');
+const inProgress = certifications.filter((c: any) => c.status === 'inProgress');
+---
+
+<section id="certificaciones" class="relative py-14 overflow-hidden">
+  <!-- Ambient -->
+  <div class="ambient-orb" style="width:350px;height:350px;background:rgba(88,28,135,0.1);top:0;right:0;"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="mb-10">
+      <p class="section-label mb-3">// mi arsenal de certificaciones</p>
+      <h2 class="text-3xl font-bold" style="font-family:'Inter',sans-serif; color:#e2e8f0;">
+        Certificaciones
+      </h2>
+      <div class="mt-3 h-px w-16" style="background: linear-gradient(90deg, #8b5cf6, transparent);"></div>
+    </div>
+
+    <!-- OBTENIDAS -->
+    <div class="mb-4">
+      <p style="font-family:'Fira Code',monospace;font-size:0.75rem;color:#4ade80;letter-spacing:0.1em;margin-bottom:16px;">
+        [✓] OBTENIDAS
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {completed.map((cert: any) => (
+          <a
+            href={cert.credentialUrl}
+            target="_blank"
+            rel="noopener"
+            class="glass-card p-6 flex flex-col items-center text-center group cursor-pointer"
+            style="text-decoration:none;"
+          >
+            <!-- Badge image -->
+            <div class="mb-4 w-24 h-24 flex items-center justify-center">
+              <img
+                src={cert.badge}
+                alt={cert.name}
+                class="max-w-full max-h-full object-contain"
+                style="filter: drop-shadow(0 0 8px rgba(139,92,246,0.3)); transition: filter 0.3s;"
+                onmouseover="this.style.filter='drop-shadow(0 0 16px rgba(167,139,250,0.6))'"
+                onmouseout="this.style.filter='drop-shadow(0 0 8px rgba(139,92,246,0.3))'"
+              />
+            </div>
+
+            <h3 style="font-family:'Fira Code',monospace;font-size:1rem;font-weight:600;color:#a78bfa;margin-bottom:4px;">
+              {cert.name}
+            </h3>
+            <p style="font-size:0.78rem;color:#64748b;margin-bottom:8px;">
+              {cert.fullName}
+            </p>
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+              <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#94a3b8;background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.15);padding:2px 8px;border-radius:4px;">
+                {cert.issuer}
+              </span>
+              <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#4ade80;">
+                {cert.year}
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- EN PROGRESO -->
+    <div class="mt-10">
+      <p style="font-family:'Fira Code',monospace;font-size:0.75rem;color:#f59e0b;letter-spacing:0.1em;margin-bottom:16px;">
+        [~] EN PROGRESO
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {inProgress.map((cert: any) => (
+          <div class="glass-card p-6 flex flex-col items-center text-center">
+            <!-- Badge image -->
+            <div class="mb-4 w-24 h-24 flex items-center justify-center">
+              <img
+                src={cert.badge}
+                alt={cert.name}
+                class="max-w-full max-h-full object-contain"
+                style="filter: drop-shadow(0 0 8px rgba(139,92,246,0.25)); opacity:0.85;"
+              />
+            </div>
+
+            <h3 style="font-family:'Fira Code',monospace;font-size:1rem;font-weight:600;color:#a78bfa;margin-bottom:4px;">
+              {cert.name}
+            </h3>
+            <p style="font-size:0.78rem;color:#64748b;margin-bottom:12px;">
+              {cert.fullName}
+            </p>
+
+            <!-- Progress -->
+            <div class="w-full mb-2">
+              <div class="flex justify-between mb-1">
+                <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#94a3b8;">Progreso</span>
+                <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#a78bfa;">{cert.progress}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style={`width:${cert.progress}%`}></div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 flex-wrap justify-center mt-2">
+              <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#94a3b8;background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.15);padding:2px 8px;border-radius:4px;">
+                {cert.issuer}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

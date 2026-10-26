@@ -1,0 +1,135 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const writeups = await getCollection('writeups');
+  return writeups.map((writeup: any) => ({
+    params: { slug: writeup.id },
+    props: { writeup },
+  }));
+}
+
+const { writeup } = Astro.props;
+const { Content, headings } = await render(writeup);
+const { data } = writeup;
+
+const dateStr = data.publishDate ?? data.date;
+const formattedDate = dateStr
+  ? new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(dateStr))
+  : '';
+---
+
+<Layout title={`${data.title} | Etern4l`} description={data.description}>
+  <Navbar />
+  <div class="max-w-4xl mx-auto px-6 py-24">
+
+    <!-- Back -->
+    <a href="/writeups" style="font-family:'Fira Code',monospace;font-size:0.78rem;color:#64748b;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:24px;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#64748b'">
+      ← Volver a Writeups
+    </a>
+
+    <!-- Header -->
+    <header class="mb-10 pb-8" style="border-bottom:1px solid rgba(139,92,246,0.15);">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {data.platform && (
+          <span style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#a78bfa;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);padding:3px 10px;border-radius:4px;">
+            {data.platform}
+          </span>
+        )}
+        {data.difficulty && (
+          <span style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#f59e0b;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);padding:3px 10px;border-radius:4px;">
+            {data.difficulty}
+          </span>
+        )}
+        {data.os && (
+          <span style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#22d3ee;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:3px 10px;border-radius:4px;">
+            {data.os}
+          </span>
+        )}
+        {data.targetIp && (
+          <button
+            id="copy-ip-btn"
+            data-ip={data.targetIp}
+            style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#94a3b8;background:rgba(148,163,184,0.06);border:1px solid rgba(148,163,184,0.15);padding:3px 10px;border-radius:4px;cursor:pointer;"
+          >
+            {data.targetIp} 📋
+          </button>
+        )}
+      </div>
+
+      <h1 style="font-size:1.8rem;font-weight:700;color:#e2e8f0;line-height:1.3;margin-bottom:10px;">
+        {data.title}
+      </h1>
+      <p style="color:#64748b;font-size:0.9rem;line-height:1.6;margin-bottom:12px;">
+        {data.description}
+      </p>
+
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <span style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#475569;">
+          Publicado: <span style="color:#a78bfa;">{formattedDate}</span>
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {(data.tags ?? []).map((tag: string) => (
+            <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#a78bfa;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);padding:2px 8px;border-radius:4px;">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    {headings && headings.length > 0 && (
+      <nav class="glass-card p-5 mb-10">
+        <h2 style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">
+          // Índice
+        </h2>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;">
+          {headings.map((h: any) => (
+            <li>
+              <a
+                href={`#${h.slug}`}
+                style={`font-family:'Fira Code',monospace;font-size:0.78rem;color:#64748b;text-decoration:none;padding-left:${(h.depth - 1) * 12}px;`}
+                onmouseover="this.style.color='#a78bfa'"
+                onmouseout="this.style.color='#64748b'"
+              >
+                {h.depth === 2 ? '>' : '-'} {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <!-- Content -->
+    <article class="prose prose-invert prose-purple max-w-none" style="color:#cbd5e1;">
+      <Content />
+    </article>
+
+    <!-- Footer -->
+    <div class="mt-14 pt-8 flex justify-between items-center" style="border-top:1px solid rgba(139,92,246,0.15);">
+      <a href="/writeups" style="font-family:'Fira Code',monospace;font-size:0.78rem;color:#64748b;text-decoration:none;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#64748b'">
+        ← Volver a Writeups
+      </a>
+      <a href="#top" style="font-family:'Fira Code',monospace;font-size:0.78rem;color:#64748b;text-decoration:none;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#64748b'">
+        Subir ↑
+      </a>
+    </div>
+  </div>
+  <Footer />
+</Layout>
+
+<script>
+  const copyBtn = document.getElementById('copy-ip-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const ip = copyBtn.getAttribute('data-ip') || '';
+      navigator.clipboard.writeText(ip);
+      copyBtn.textContent = '¡Copiada! ✓';
+      setTimeout(() => { copyBtn.textContent = ip + ' 📋'; }, 2000);
+    });
+  }
+</script>

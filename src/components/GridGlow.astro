@@ -1,0 +1,114 @@
+---
+// Rejilla reactiva: las celdas cercanas al cursor se iluminan en morado
+// y se apagan poco a poco. Alineada con la rejilla de fondo (60px).
+---
+
+<canvas id="grid-glow" aria-hidden="true"></canvas>
+
+<style is:global>
+  #grid-glow {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    display: none;
+  }
+  @media (pointer: fine) {
+    #grid-glow { display: block; }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('grid-glow') as HTMLCanvasElement | null;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canvas && window.matchMedia('(pointer: fine)').matches && !reduce) {
+    const ctx = canvas.getContext('2d')!;
+    const CELL = 60;       // mismo tamaño que .cyber-grid
+    const RADIUS = 2.6;    // alcance del brillo en celdas
+    const DECAY = 0.955;   // velocidad de apagado (más cerca de 1 = más lento)
+
+    const heat = new Map<string, number>(); // clave "col,row" en coordenadas de página
+    let w = 0, h = 0, dpr = 1;
+    let running = false;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function addHeat(x: number, y: number) {
+      const px = x;
+      const py = y + window.scrollY;
+      const c0 = Math.floor(px / CELL);
+      const r0 = Math.floor(py / CELL);
+      const span = Math.ceil(RADIUS);
+      for (let dc = -span; dc <= span; dc++) {
+        for (let dr = -span; dr <= span; dr++) {
+          const c = c0 + dc;
+          const r = r0 + dr;
+          // distancia desde el puntero al centro de la celda, en celdas
+          const cx = (c + 0.5) * CELL;
+          const cy = (r + 0.5) * CELL;
+          const d = Math.hypot(px - cx, py - cy) / CELL;
+          const v = 1 - d / RADIUS;
+          if (v <= 0) continue;
+          const key = c + ',' + r;
+          if ((heat.get(key) ?? 0) < v) heat.set(key, v);
+        }
+      }
+      start();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const sy = window.scrollY;
+
+      heat.forEach((v, key) => {
+        const [c, r] = key.split(',').map(Number);
+        const x = c * CELL;
+        const y = r * CELL - sy;
+
+        if (y + CELL < 0 || y > h) {
+          // fuera de pantalla: seguir apagando igualmente
+        } else {
+          // relleno suave
+          ctx.fillStyle = `rgba(139, 92, 246, ${(v * 0.10).toFixed(3)})`;
+          ctx.fillRect(x, y, CELL, CELL);
+          // líneas de la rejilla iluminadas
+          ctx.strokeStyle = `rgba(167, 139, 250, ${(v * 0.45).toFixed(3)})`;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x + 0.5, y + 0.5, CELL, CELL);
+        }
+
+        const nv = v * DECAY;
+        if (nv < 0.02) heat.delete(key);
+        else heat.set(key, nv);
+      });
+
+      if (heat.size > 0) {
+        requestAnimationFrame(draw);
+      } else {
+        running = false;
+        ctx.clearRect(0, 0, w, h);
+      }
+    }
+
+    function start() {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => addHeat(e.clientX, e.clientY));
+  }
+</script>

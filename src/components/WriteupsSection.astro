@@ -1,0 +1,56 @@
+---
+import { getAllWriteups } from '../lib/writeups';
+const writeups = (await getAllWriteups()).slice(0, 3);
+---
+
+<section id="writeups" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="mb-14 flex items-end justify-between">
+      <div>
+        <p class="section-label mb-3">// técnicas y metodologías</p>
+        <h2 class="text-3xl font-bold" style="font-family:'Inter',sans-serif;color:#e2e8f0;">
+          Writeups
+        </h2>
+        <div class="mt-3 h-px w-16" style="background:linear-gradient(90deg,#8b5cf6,transparent);"></div>
+      </div>
+      <a href="/writeups" class="btn-neon text-sm">Ver todos →</a>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {writeups.map((wp: any) => (
+        <a
+          href={wp.href}
+          class="glass-card p-6 group"
+          style="text-decoration:none;display:block;"
+        >
+          <!-- Category label -->
+          <p style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#a78bfa;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;">
+            {wp.data.platform ?? 'CTF'}
+          </p>
+
+          <h3 class="font-semibold mb-2 group-hover:text-purple-300 transition-colors" style="color:#e2e8f0;font-size:1rem;line-height:1.4;">
+            {wp.data.title}
+          </h3>
+
+          <p style="font-size:0.82rem;color:#64748b;line-height:1.6;margin-bottom:14px;">
+            {wp.data.description ?? ''}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            {(wp.data.tags ?? []).slice(0, 3).map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+
+          <!-- Date -->
+          <p style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#475569;margin-top:12px;">
+            {new Date(wp.data.publishDate).toLocaleDateString('es-ES', {year:'numeric',month:'short',day:'numeric'})}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

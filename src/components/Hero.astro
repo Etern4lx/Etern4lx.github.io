@@ -1,0 +1,182 @@
+---
+---
+
+<section class="relative flex items-start overflow-hidden pt-24">
+  <!-- Ambient glows -->
+  <div class="ambient-orb" style="width:600px;height:600px;background:rgba(88,28,135,0.18);top:-200px;left:-200px;"></div>
+  <div class="ambient-orb" style="width:450px;height:450px;background:rgba(139,92,246,0.09);top:100px;right:-150px;"></div>
+  <div class="ambient-orb" style="width:300px;height:300px;background:rgba(192,132,252,0.06);bottom:0;left:40%;"></div>
+
+  <!-- Decorative floating lines (top) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index:1;">
+    <!-- Corner brackets -->
+    <div style="position:absolute;top:80px;left:24px;width:40px;height:40px;border-top:1px solid rgba(139,92,246,0.25);border-left:1px solid rgba(139,92,246,0.25);"></div>
+    <div style="position:absolute;top:80px;right:24px;width:40px;height:40px;border-top:1px solid rgba(139,92,246,0.25);border-right:1px solid rgba(139,92,246,0.25);"></div>
+    <div style="position:absolute;bottom:40px;left:24px;width:40px;height:40px;border-bottom:1px solid rgba(139,92,246,0.15);border-left:1px solid rgba(139,92,246,0.15);"></div>
+    <div style="position:absolute;bottom:40px;right:24px;width:40px;height:40px;border-bottom:1px solid rgba(139,92,246,0.15);border-right:1px solid rgba(139,92,246,0.15);"></div>
+
+    <!-- Vertical pulse lines -->
+    <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(139,92,246,0.06) 40%,rgba(139,92,246,0.06) 60%,transparent);"></div>
+  </div>
+
+  <!-- Main content -->
+  <div class="relative w-full max-w-6xl mx-auto px-6 pt-8 pb-12" style="z-index:10;">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+      <!-- Left: Text -->
+      <div class="animate-fade-in">
+        <!-- Status line (top decorative) -->
+        <div class="flex items-center gap-3 mb-6">
+          <div style="height:1px;width:32px;background:rgba(139,92,246,0.4);"></div>
+          <p class="section-label" style="margin:0;">// offensive security researcher</p>
+        </div>
+
+        <h1 class="text-5xl lg:text-6xl font-bold mb-4 leading-tight" style="font-family:'Inter',sans-serif;">
+          Hola, soy
+          <span class="block text-glow" style="color:#a78bfa;">Etern4l</span>
+        </h1>
+
+        <div class="flex items-center gap-3 mb-5">
+          <span style="font-family:'Fira Code',monospace;font-size:0.78rem;color:#4ade80;">▶</span>
+          <span style="font-family:'Fira Code',monospace;font-size:0.78rem;color:#94a3b8;">Pentesting · Red Team</span>
+        </div>
+
+        <p class="mb-7 leading-relaxed" style="color:#64748b;font-size:0.93rem;max-width:420px;">
+          Especializado en ciberseguridad ofensiva. Apasionado por el hacking ético,
+          los CTF y construyendo una comunidad en español.
+        </p>
+
+        <div class="flex gap-4 flex-wrap mb-7">
+          <a href="#certificaciones" class="btn-solid">
+            Ver Certificaciones
+          </a>
+          <a href="#writeups" class="btn-neon">
+            Ver Writeups
+          </a>
+        </div>
+
+        <!-- Status badges -->
+        <div class="flex gap-3 flex-wrap mb-8">
+          <span style="font-family:'Fira Code',monospace;font-size:0.7rem;color:#4ade80;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);padding:4px 12px;border-radius:20px;">
+            ● STATUS: ONLINE
+          </span>
+          <span style="font-family:'Fira Code',monospace;font-size:0.7rem;color:#f472b6;background:rgba(244,114,182,0.08);border:1px solid rgba(244,114,182,0.2);padding:4px 12px;border-radius:20px;">
+            ⚔ RED_TEAM
+          </span>
+        </div>
+
+        <!-- Mini cert preview -->
+        <div class="flex items-center gap-3" style="border-top:1px solid rgba(139,92,246,0.1);padding-top:20px;">
+          <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#475569;">certs:</span>
+          {['eJPTv2','eCPPT','eWPTX'].map(c => (
+            <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#4ade80;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.15);padding:2px 8px;border-radius:3px;">{c}</span>
+          ))}
+          <span style="font-family:'Fira Code',monospace;font-size:0.68rem;color:#f59e0b;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);padding:2px 8px;border-radius:3px;">CPTS 90%</span>
+        </div>
+      </div>
+
+      <!-- Right: Terminal -->
+      <div class="terminal scanlines animate-fade-in" style="animation-delay:0.15s;">
+        <!-- Title bar -->
+        <div class="terminal-titlebar">
+          <div class="terminal-dot" style="background:#ff5f57;"></div>
+          <div class="terminal-dot" style="background:#febc2e;"></div>
+          <div class="terminal-dot" style="background:#28c840;"></div>
+          <span style="font-family:'Fira Code',monospace;font-size:0.72rem;color:#64748b;margin-left:10px;">etern4l@kali ~ %</span>
+        </div>
+
+        <!-- Terminal body -->
+        <div id="terminal-body" class="p-5" style="min-height:270px;font-size:0.81rem;line-height:1.75;"></div>
+
+        <!-- Input -->
+        <div class="px-5 pb-5 flex items-center gap-2">
+          <span style="color:#a78bfa;font-family:'Fira Code',monospace;font-size:0.81rem;">etern4l@kali</span>
+          <span style="color:#64748b;font-family:'Fira Code',monospace;font-size:0.81rem;">~$</span>
+          <input
+            id="terminal-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            style="background:transparent;border:none;outline:none;flex:1;color:#e2e8f0;font-family:'Fira Code',monospace;font-size:0.81rem;caret-color:#a78bfa;"
+            placeholder="escribe un comando..."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer bottom -->
+</section>
+
+<script>
+  const body = document.getElementById('terminal-body')!;
+  const input = document.getElementById('terminal-input') as HTMLInputElement;
+
+  const GREEN = '#4ade80';
+  const PURPLE = '#a78bfa';
+  const CYAN = '#22d3ee';
+  const MUTED = '#64748b';
+
+  function print(html: string) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function cmdLine(text: string) {
+    return `<span style="color:${PURPLE};">etern4l@kali</span><span style="color:${MUTED};">~$</span> <span style="color:#e2e8f0;">${text}</span>`;
+  }
+
+  function runCommand(raw: string) {
+    const c = raw.trim().toLowerCase();
+    print(cmdLine(raw));
+
+    if (c === 'whoami') {
+      print(`<span style="color:${GREEN};">Etern4l</span>`);
+      print(`<span style="color:${MUTED};">// Offensive Security Researcher · Red Team</span>`);
+    } else if (c === 'cat certificaciones.txt') {
+      print(`<span style="color:${CYAN};">── Obtenidas ─────────────────────────────</span>`);
+      print(`<span style="color:${GREEN};">[✓]</span> eJPTv2  <span style="color:${MUTED};">- INE Security</span>`);
+      print(`<span style="color:${GREEN};">[✓]</span> eCPPT   <span style="color:${MUTED};">- INE Security</span>`);
+      print(`<span style="color:${GREEN};">[✓]</span> eWPTX   <span style="color:${MUTED};">- INE Security</span>`);
+      print(`<span style="color:${CYAN};">── En Progreso ───────────────────────────</span>`);
+      print(`<span style="color:#f59e0b;">[~]</span> CPTS    <span style="color:${MUTED};">- HTB Academy (90%)</span>`);
+    } else if (c === './launch_community') {
+      print(`<span style="color:${GREEN};">[✓]</span> Iniciando comunidad StickyBit...`);
+      print(`<span style="color:${MUTED};">Estado:</span> <span style="color:#f59e0b;">EARLY ACCESS</span>`);
+      print(`<span style="color:${MUTED};">Discord:</span> <a href="https://chat.stickybit.es" target="_blank" style="color:${PURPLE};text-decoration:underline;">https://chat.stickybit.es</a>`);
+    } else if (c === 'help') {
+      print(`<span style="color:${CYAN};">Comandos disponibles:</span>`);
+      print(`  <span style="color:${PURPLE};">whoami</span>                  — identidad`);
+      print(`  <span style="color:${PURPLE};">cat certificaciones.txt</span> — mis certs`);
+      print(`  <span style="color:${PURPLE};">./launch_community</span>      — comunidad`);
+      print(`  <span style="color:${PURPLE};">clear</span>                   — limpiar`);
+    } else if (c === 'clear') {
+      body.innerHTML = '';
+    } else if (c !== '') {
+      print(`<span style="color:#f87171;">comando no encontrado: ${raw}</span> <span style="color:${MUTED};">(escribe 'help')</span>`);
+    }
+  }
+
+  // Boot sequence
+  setTimeout(() => {
+    print(cmdLine('whoami'));
+    setTimeout(() => {
+      print(`<span style="color:${GREEN};">Etern4l</span>`);
+      print(`<span style="color:${MUTED};">// Offensive Security Researcher · Red Team</span>`);
+      print('');
+      print(`<span style="color:${MUTED};">Escribe <span style="color:${PURPLE};">help</span> para ver comandos disponibles.</span>`);
+    }, 400);
+  }, 300);
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      input.value = '';
+      runCommand(val);
+    }
+  });
+
+  document.querySelector('.terminal')?.addEventListener('click', () => input.focus());
+</script>

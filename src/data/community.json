@@ -1,0 +1,36 @@
+{
+  "name": "SecZone / VoidSec",
+  "status": "En fase de incubación & prep",
+  "tagline": "Comunidad abierta y colaborativa de ciberseguridad, hacking ético y preparación para certificaciones.",
+  "description": "Estoy creando este espacio para unir a apasionados de la seguridad ofensiva y defensiva de habla hispana. Un entorno libre de egos donde compartir writeups, resolver máquinas juntos en stream/discord, organizar un equipo competitivo de CTF y mentorizarnos en certificaciones (eJPT, OSCP, CPTS).",
+  "discordUrl": "https://chat.stickybit.es",
+  "telegramUrl": "https://t.me/comunidad_sec",
+  "features": [
+    {
+      "icon": "flag",
+      "title": "CTF Squad Activo",
+      "desc": "Participación regular en competiciones internacionales (HTB Business CTF, picoCTF, etc.) con sesiones de post-mortem."
+    },
+    {
+      "icon": "book-open",
+      "title": "Biblioteca de Writeups & Metodología",
+      "desc": "Base de conocimiento colaborativa en Markdown con trucos, exploits y rutas de explotación."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Grupos de Estudio de Certificaciones",
+      "desc": "Canales temáticos para estudiar en equipo el OSCP, CPTS, eJPT y CEH con laboratorios compartidos."
+    },
+    {
+      "icon": "terminal",
+      "title": "Workshops y Charlas Prácticas",
+      "desc": "Sesiones en vivo sobre Active Directory, bypass de AV, reversing básico y seguridad web."
+    }
+  ],
+  "roadmap": [
+    { "phase": "Fase 1", "title": "Setup de Servidor & Reglas", "status": "Completada" },
+    { "phase": "Fase 2", "title": "Lanzamiento Beta Cerrada (Early Access)", "status": "En proceso" },
+    { "phase": "Fase 3", "title": "Primer Torneo Interno de CTF", "status": "Próximamente" },
+    { "phase": "Fase 4", "title": "Plataforma de retos comunitarios", "status": "Planificada" }
+  ]
+}

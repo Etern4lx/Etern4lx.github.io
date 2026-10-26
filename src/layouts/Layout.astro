@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import PageFx from '../components/PageFx.astro';
+import Cursor from '../components/Cursor.astro';
+import GridGlow from '../components/GridGlow.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Etern4l | Offensive Security',
+  description = 'Offensive Security researcher. eJPTv2 · eCPPT · eWPTX. Writeups, certs, comunidad.'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="cyber-grid min-h-screen relative overflow-x-hidden">
+    <GridGlow />
+    <PageFx />
+    <Cursor />
+    <slot />
+  </body>
+</html>

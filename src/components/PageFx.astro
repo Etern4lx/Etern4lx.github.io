@@ -1,0 +1,69 @@
+---
+// Animación sutil global: línea de escaneo que recorre toda la página
+// de arriba abajo + fragmentos de código flotantes repartidos por todo el scroll.
+---
+
+<div class="page-fx" aria-hidden="true">
+  <!-- Línea de escaneo: recorre el alto completo de la página -->
+  <div class="page-scanline"></div>
+
+  <!-- Código flotante repartido a lo largo de la página -->
+  <div class="floating-code" style="top:9%;left:5%;animation-delay:0s;">nmap -sV -p-</div>
+  <div class="floating-code" style="top:14%;right:6%;animation-delay:1.5s;">CVE-2023-27163</div>
+  <div class="floating-code" style="top:27%;left:3%;animation-delay:3s;">sqlmap --dbs</div>
+  <div class="floating-code" style="top:36%;right:4%;animation-delay:2s;">bloodhound-python</div>
+  <div class="floating-code" style="top:47%;left:4%;animation-delay:4s;">hashcat -m 1000</div>
+  <div class="floating-code" style="top:56%;right:5%;animation-delay:0.5s;">./exploit.py</div>
+  <div class="floating-code" style="top:66%;left:3%;animation-delay:2.5s;">nc -lvnp 4444</div>
+  <div class="floating-code" style="top:75%;right:4%;animation-delay:1s;">gobuster dir -u</div>
+  <div class="floating-code" style="top:85%;left:5%;animation-delay:3.5s;">sudo -l</div>
+  <div class="floating-code" style="top:93%;right:6%;animation-delay:0.8s;">id; whoami</div>
+</div>
+
+<style>
+  .page-fx {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .page-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.45), transparent);
+    box-shadow: 0 0 14px rgba(139, 92, 246, 0.35);
+    animation: pageScan 28s linear infinite;
+  }
+
+  @keyframes pageScan {
+    0%   { top: 0;    opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .floating-code {
+    position: absolute;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.68rem;
+    color: rgba(139, 92, 246, 0.18);
+    letter-spacing: 0.05em;
+    animation: floatUpDown 6s ease-in-out infinite;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  @keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50%      { transform: translateY(-10px); opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .floating-code { display: none; }
+  }
+</style>

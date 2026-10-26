@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ejpt",
+    "name": "eJPTv2",
+    "fullName": "Junior Penetration Tester v2",
+    "issuer": "INE Security",
+    "year": "2026",
+    "badge": "/certs/ejpt.png",
+    "credentialUrl": "https://certs.ine.com/e2f0f464-8ed9-486b-8648-820df8ab5696",
+    "status": "completed"
+  },
+  {
+    "id": "ecppt",
+    "name": "eCPPT",
+    "fullName": "Certified Professional Penetration Tester",
+    "issuer": "INE Security",
+    "year": "2026",
+    "badge": "/certs/ecppt.png",
+    "credentialUrl": "https://certs.ine.com/c6966a37-2920-4d49-90e4-c12ed9a3da39",
+    "status": "completed"
+  },
+  {
+    "id": "ewptx",
+    "name": "eWPTX",
+    "fullName": "Web Application Penetration Tester eXtreme",
+    "issuer": "INE Security",
+    "year": "2026",
+    "badge": "/certs/ewptx.png",
+    "credentialUrl": "https://certs.ine.com/3f1f5788-fa0a-48e3-8c45-d233f445a07e",
+    "status": "completed"
+  },
+  {
+    "id": "cpts",
+    "name": "CPTS",
+    "fullName": "Certified Penetration Testing Specialist",
+    "issuer": "Hack The Box",
+    "year": "2026",
+    "badge": "/certs/cpts-badge.png",
+    "progress": 90,
+    "status": "inProgress"
+  }
+]

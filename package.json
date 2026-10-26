@@ -1,0 +1,30 @@
+{
+  "name": "cybersec-portfolio",
+  "version": "1.0.0",
+  "description": "Portafolio de Ciberseguridad con paleta Cyberpunk Violeta y sincronización automática de Writeups desde Obsidian a GitHub Pages.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [
+    "cybersecurity",
+    "portfolio",
+    "red-team",
+    "obsidian",
+    "github-pages",
+    "astro",
+    "writeups"
+  ],
+  "author": "Alvaro",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "astro": "^5.0.0",
+    "lucide-astro": "^0.556.0",
+    "tailwindcss": "^3.4.0"
+  }
+}

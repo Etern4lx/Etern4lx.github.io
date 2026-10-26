@@ -1,0 +1,62 @@
+{
+  "Basic Pentesting.pdf": {
+    "title": "TryHackMe: Basic Pentesting",
+    "description": "Enumeración, fuerza bruta y escalada de privilegios en la sala Basic Pentesting.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Linux",
+    "tags": ["Enumeración", "Brute Force", "PrivEsc"]
+  },
+  "Blue.pdf": {
+    "title": "TryHackMe: Blue",
+    "description": "Explotación de MS17-010 (EternalBlue) en un Windows 7 vulnerable.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Windows",
+    "tags": ["EternalBlue", "MS17-010", "Metasploit"]
+  },
+  "Gallery.pdf": {
+    "title": "TryHackMe: Gallery",
+    "description": "Explotación de una galería web vulnerable y escalada de privilegios.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Linux",
+    "tags": ["Web", "RCE", "PrivEsc"]
+  },
+  "LazyAdmin.pdf": {
+    "title": "TryHackMe: LazyAdmin",
+    "description": "Explotación de SweetRice CMS y escalada de privilegios mediante sudo.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Linux",
+    "tags": ["SweetRice", "CMS", "Sudo"]
+  },
+  "Pickle Rick.pdf": {
+    "title": "TryHackMe: Pickle Rick",
+    "description": "CTF temático de Rick and Morty: enumeración web y ejecución de comandos.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Linux",
+    "tags": ["Web", "Command Injection", "CTF"]
+  },
+  "Vulnversity.pdf": {
+    "title": "TryHackMe: Vulnversity",
+    "description": "Reconocimiento, subida de archivos maliciosos y escalada con SUID.",
+    "platform": "TryHackMe", "difficulty": "Easy", "os": "Linux",
+    "tags": ["Gobuster", "File Upload", "SUID"]
+  },
+  "Nibbles.pdf": {
+    "title": "HackTheBox: Nibbles",
+    "description": "Explotación de Nibbleblog con subida de archivos y escalada de privilegios mediante sudo.",
+    "platform": "HackTheBox", "difficulty": "Easy", "os": "Linux",
+    "tags": ["Nibbleblog", "File Upload", "Sudo"]
+  },
+  "Poison.pdf": {
+    "title": "HackTheBox: Poison",
+    "description": "Local File Inclusion, log poisoning y pivoting con túnel SSH en una máquina FreeBSD.",
+    "platform": "HackTheBox", "difficulty": "Medium", "os": "FreeBSD",
+    "tags": ["LFI", "Log Poisoning", "SSH Tunnel", "VNC"]
+  },
+  "Querier.pdf": {
+    "title": "HackTheBox: Querier",
+    "description": "Credenciales en macros de Excel, captura de hash con Responder vía MSSQL y escalada con GPP.",
+    "platform": "HackTheBox", "difficulty": "Medium", "os": "Windows",
+    "tags": ["MSSQL", "Responder", "Macros", "GPP"]
+  },
+  "SolidState.pdf": {
+    "title": "HackTheBox: SolidState",
+    "description": "Apache James con credenciales por defecto, escape de rbash y escalada mediante cron.",
+    "platform": "HackTheBox", "difficulty": "Medium", "os": "Linux",
+    "tags": ["Apache James", "rbash", "Cron"]
+  }
+}
