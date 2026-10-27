@@ -3,6 +3,7 @@
   "status": "En fase de incubación & prep",
   "tagline": "Comunidad abierta y colaborativa de ciberseguridad, hacking ético y preparación para certificaciones.",
   "description": "Estoy creando este espacio para unir a apasionados de la seguridad ofensiva y defensiva de habla hispana. Un entorno libre de egos donde compartir writeups, resolver máquinas juntos en stream/discord, organizar un equipo competitivo de CTF y mentorizarnos en certificaciones (eJPT, OSCP, CPTS).",
+  "websiteUrl": "https://www.stickybit.es",
   "discordUrl": "https://chat.stickybit.es",
   "telegramUrl": "https://t.me/comunidad_sec",
   "features": [
