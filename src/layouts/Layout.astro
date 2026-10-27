@@ -7,12 +7,17 @@ import GridGlow from '../components/GridGlow.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
-  title = 'Etern4l | Offensive Security',
-  description = 'Offensive Security researcher. eJPTv2 · eCPPT · eWPTX. Writeups, certs, comunidad.'
+  title = 'Alvaro Martinez (Etern4l) | Offensive Security',
+  description = 'Portfolio de Seguridad Ofensiva, Pentesting y Red Team. Certificaciones eJPTv2, eCPPT, eWPTX, CPTS. Writeups técnicos de CTFs y laboratorios.',
+  image = '/og-image.png'
 } = Astro.props;
+const siteUrl = Astro.site ? Astro.site.toString() : 'https://etern4lx.github.io';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(image, siteUrl).toString();
 ---
 
 <!DOCTYPE html>
@@ -22,6 +27,24 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook / Discord / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
